@@ -12,6 +12,10 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 RewriteCond %{THE_REQUEST} \s/+public/?([^\s?]*) [NC]
 RewriteRule ^public/?(.*)$ /$1 [R=301,L,NE]
 
+# Root domain langsung masuk ke front controller Laravel.
+# Ini menghindari server mengekspos folder /public sebagai redirect eksternal.
+RewriteRule ^$ public/index.php [L]
+
 # Blokir akses ke file sensitif
 RewriteRule ^\.env$ - [F,L]
 RewriteRule ^\.env\..*$ - [F,L]
@@ -24,7 +28,12 @@ RewriteCond %{REQUEST_URI} !^/storage/app/public/
 RewriteRule ^storage/ - [F,L]
 
 RewriteCond %{REQUEST_URI} !^/public(/|$)
+RewriteCond %{DOCUMENT_ROOT}/public/$1 -f [OR]
+RewriteCond %{DOCUMENT_ROOT}/public/$1 -d
 RewriteRule ^(.*)$ public/$1 [L]
+
+RewriteCond %{REQUEST_URI} !^/public(/|$)
+RewriteRule ^(.*)$ public/index.php [L]
 </IfModule>
 
 # Block access to sensitive file types
