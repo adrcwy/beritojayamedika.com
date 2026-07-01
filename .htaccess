@@ -1,6 +1,17 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
+# Force HTTPS sebelum request di-rewrite internal ke folder public.
+# Ini mencegah browser dilempar ke /public saat HTTPS redirect terjadi.
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Bersihkan URL lama/keliru yang sudah mengarah ke /public.
+# Laravel tetap memakai folder public secara internal, tapi URL user harus tetap di root domain.
+RewriteCond %{THE_REQUEST} \s/+public/?([^\s?]*) [NC]
+RewriteRule ^public/?(.*)$ /$1 [R=301,L,NE]
+
 # Blokir akses ke file sensitif
 RewriteRule ^\.env$ - [F,L]
 RewriteRule ^\.env\..*$ - [F,L]
