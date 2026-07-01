@@ -6,7 +6,7 @@
             </a>
             <div>
                 <h2 class="text-2xl font-extrabold text-gray-800">Upload Katalog</h2>
-                <p class="mt-1 text-sm text-gray-500">PDF maksimal 50MB, disarankan A4.</p>
+                <p class="mt-1 text-sm text-gray-500">PDF maksimal 500MB, disarankan ukuran halaman A4.</p>
             </div>
         </div>
     </x-slot>

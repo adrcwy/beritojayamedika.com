@@ -30,7 +30,7 @@ class CatalogBookController extends Controller
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string|max:65535',
-            'pdf_path' => 'required|file|mimes:pdf|max:51200',
+            'pdf_path' => 'required|file|mimes:pdf|max:512000',
             'cover_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
             'published_at' => 'nullable|date',
             'is_active' => 'nullable|boolean',
@@ -57,7 +57,7 @@ class CatalogBookController extends Controller
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string|max:65535',
-            'pdf_path' => 'nullable|file|mimes:pdf|max:51200',
+            'pdf_path' => 'nullable|file|mimes:pdf|max:512000',
             'cover_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
             'published_at' => 'nullable|date',
             'is_active' => 'nullable|boolean',

@@ -30,7 +30,7 @@
             <a href="{{ \App\Support\MediaPath::url($catalogBook->pdf_path) }}" target="_blank" class="mb-3 inline-flex rounded-xl bg-blue-50 px-4 py-2 text-sm font-bold text-blue-700 hover:bg-blue-100">Lihat PDF saat ini</a>
         @endif
         <input id="pdf_path" type="file" name="pdf_path" accept="application/pdf" @if(!$catalogBook) required @endif class="w-full rounded-xl border-2 border-dashed border-gray-300 px-4 py-3 file:mr-4 file:rounded-lg file:border-0 file:bg-blue-50 file:px-4 file:py-2 file:text-sm file:font-bold file:text-blue-700">
-        <p class="mt-2 text-xs text-gray-500">PDF maksimal 50MB. Kalau masih kena 413, naikkan limit di hosting/cPanel juga.</p>
+        <p class="mt-2 text-xs text-gray-500">PDF maksimal 500MB. Kalau masih kena 413, naikkan limit di hosting/cPanel juga.</p>
     </div>
 
     <div>
