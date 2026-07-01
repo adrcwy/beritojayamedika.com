@@ -1,0 +1,39 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Blokir akses ke file sensitif
+RewriteRule ^\.env$ - [F,L]
+RewriteRule ^\.env\..*$ - [F,L]
+RewriteRule composer\.(json|lock)$ - [F,L]
+RewriteRule package(-lock)?\.json$ - [F,L]
+RewriteRule ^artisan$ - [F,L]
+RewriteRule ^phpunit\.xml$ - [F,L]
+RewriteRule ^storage/app/public/ - [L]
+RewriteCond %{REQUEST_URI} !^/storage/app/public/
+RewriteRule ^storage/ - [F,L]
+
+RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Block access to sensitive file types
+<FilesMatch "\.(env|log|sql|bak|old|orig|save|swp|swo|tmp|dist|fla|psd|ini|sh|bat|conf|yaml|yml|toml)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block specific sensitive files by name
+<FilesMatch "^(\.env|composer\.json|composer\.lock|package\.json|package-lock\.json|phpunit\.xml|\.gitignore|README\.md|webpack\.mix\.js|vite\.config\.js|tailwind\.config\.js|postcss\.config\.js)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block access to hidden files (except .well-known for SSL)
+<IfModule mod_rewrite.c>
+    RewriteRule "(^|/)\.(?!well-known)" - [F]
+</IfModule>
+
+# Disable directory listing
+Options -Indexes
+
+# Prevent server info leaking
+ServerSignature Off
