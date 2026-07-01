@@ -5,10 +5,9 @@
 
     RewriteEngine On
 
-    # Jika document root cPanel sudah mengarah ke folder public,
-    # URL /public tetap harus dibersihkan ke root domain.
+    # Bersihkan URL /public di browser
     RewriteCond %{THE_REQUEST} \s/+public/?([^\s?]*) [NC]
-    RewriteRule ^public/?(.*)$ /$1 [R=301,L,NE]
+    RewriteRule ^ /%1 [R=301,L,NE]
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
@@ -28,6 +27,9 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 
+    # Force HTTPS
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
 # =============================================

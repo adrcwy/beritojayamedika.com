@@ -1,20 +1,13 @@
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php83 .php .php8 .phtml
+</IfModule>
+
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
-# Force HTTPS sebelum request di-rewrite internal ke folder public.
-# Ini mencegah browser dilempar ke /public saat HTTPS redirect terjadi.
-RewriteCond %{HTTPS} !=on
-RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# Bersihkan URL lama/keliru yang sudah mengarah ke /public.
-# Laravel tetap memakai folder public secara internal, tapi URL user harus tetap di root domain.
+# Bersihkan URL /public di browser, tapi tetap pakai folder public secara internal.
 RewriteCond %{THE_REQUEST} \s/+public/?([^\s?]*) [NC]
 RewriteRule ^public/?(.*)$ /$1 [R=301,L,NE]
-
-# Root domain langsung masuk ke front controller Laravel.
-# Ini menghindari server mengekspos folder /public sebagai redirect eksternal.
-RewriteRule ^$ public/index.php [L]
 
 # Blokir akses ke file sensitif
 RewriteRule ^\.env$ - [F,L]
@@ -27,13 +20,7 @@ RewriteRule ^storage/app/public/ - [L]
 RewriteCond %{REQUEST_URI} !^/storage/app/public/
 RewriteRule ^storage/ - [F,L]
 
-RewriteCond %{REQUEST_URI} !^/public(/|$)
-RewriteCond %{DOCUMENT_ROOT}/public/$1 -f [OR]
-RewriteCond %{DOCUMENT_ROOT}/public/$1 -d
 RewriteRule ^(.*)$ public/$1 [L]
-
-RewriteCond %{REQUEST_URI} !^/public(/|$)
-RewriteRule ^(.*)$ public/index.php [L]
 </IfModule>
 
 # Block access to sensitive file types
