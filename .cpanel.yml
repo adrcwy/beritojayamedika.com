@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/beritoja/public_html/
-    - /bin/rsync -av --delete --exclude='.git' --exclude='.env' --exclude='.env.*' --exclude='env local' --exclude='env server' --exclude='node_modules' --exclude='vendor' --exclude='public/storage' --exclude='storage/app/public' --exclude='storage/logs' --exclude='storage/framework/cache' --exclude='storage/framework/sessions' --exclude='storage/framework/views' --exclude='storage/framework/testing' --exclude='*.zip' --exclude='*.sql' --exclude='*.log' --exclude='error_log' ./ $DEPLOYPATH
+    - /bin/tar --exclude='./.git' --exclude='./.env' --exclude='./.env.*' --exclude='./env local' --exclude='./env server' --exclude='./node_modules' --exclude='./vendor' --exclude='./public/storage' --exclude='./storage/app/public' --exclude='./storage/logs' --exclude='./storage/framework/cache' --exclude='./storage/framework/sessions' --exclude='./storage/framework/views' --exclude='./storage/framework/testing' --exclude='./*.zip' --exclude='./*.sql' --exclude='./*.log' --exclude='./error_log' -cf - . | /bin/tar -xf - -C $DEPLOYPATH

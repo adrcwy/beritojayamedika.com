@@ -12,6 +12,7 @@ RewriteRule ^storage/app/public/ - [L]
 RewriteCond %{REQUEST_URI} !^/storage/app/public/
 RewriteRule ^storage/ - [F,L]
 
+RewriteCond %{REQUEST_URI} !^/public(/|$)
 RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
 
