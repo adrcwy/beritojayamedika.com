@@ -1,7 +1,7 @@
 <div class="space-y-6">
     <div>
-        <label for="title" class="mb-2 block text-sm font-bold text-gray-700">Judul Catalog</label>
-        <input id="title" name="title" value="{{ old('title', $catalogBook->title ?? '') }}" required class="w-full rounded-xl border-gray-200 px-4 py-3 focus:border-blue-500 focus:ring-blue-500" placeholder="Catalog PT. Berito Jaya Medika 2026">
+        <label for="title" class="mb-2 block text-sm font-bold text-gray-700">Judul Katalog</label>
+        <input id="title" name="title" value="{{ old('title', $catalogBook->title ?? '') }}" required class="w-full rounded-xl border-gray-200 px-4 py-3 focus:border-blue-500 focus:ring-blue-500" placeholder="Katalog PT. Berito Jaya Medika 2026">
     </div>
 
     <div>
@@ -25,7 +25,7 @@
     </div>
 
     <div>
-        <label for="pdf_path" class="mb-2 block text-sm font-bold text-gray-700">File PDF Catalog</label>
+        <label for="pdf_path" class="mb-2 block text-sm font-bold text-gray-700">File PDF Katalog</label>
         @if($catalogBook?->pdf_path)
             <a href="{{ \App\Support\MediaPath::url($catalogBook->pdf_path) }}" target="_blank" class="mb-3 inline-flex rounded-xl bg-blue-50 px-4 py-2 text-sm font-bold text-blue-700 hover:bg-blue-100">Lihat PDF saat ini</a>
         @endif
@@ -43,6 +43,6 @@
 
     <div class="flex justify-end gap-3 border-t border-gray-100 pt-6">
         <a href="{{ route('catalog-books.index') }}" class="rounded-xl bg-gray-100 px-5 py-3 text-sm font-bold text-gray-700 hover:bg-gray-200">Cancel</a>
-        <button class="rounded-xl bg-blue-700 px-6 py-3 text-sm font-bold text-white shadow-lg hover:bg-blue-800">Save Catalog</button>
+        <button class="rounded-xl bg-blue-700 px-6 py-3 text-sm font-bold text-white shadow-lg hover:bg-blue-800">Simpan Katalog</button>
     </div>
 </div>

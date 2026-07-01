@@ -2,11 +2,11 @@
     <x-slot name="header">
         <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-                <h2 class="text-2xl font-extrabold text-gray-800">Catalog Book</h2>
+                <h2 class="text-2xl font-extrabold text-gray-800">Katalog</h2>
                 <p class="mt-1 text-sm text-gray-500">Upload buku katalog PDF A4 untuk dibaca pengunjung.</p>
             </div>
             <a href="{{ route('catalog-books.create') }}" class="inline-flex items-center justify-center rounded-xl bg-blue-700 px-5 py-3 text-sm font-bold text-white shadow-lg hover:bg-blue-800">
-                Upload Catalog
+                Upload Katalog
             </a>
         </div>
     </x-slot>
@@ -22,7 +22,7 @@
                     <table class="min-w-full divide-y divide-gray-100">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-600">Catalog</th>
+                                <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-600">Katalog</th>
                                 <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-600">Tanggal</th>
                                 <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-600">Status</th>
                                 <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-600">Actions</th>
@@ -44,7 +44,7 @@
                                     <td class="px-6 py-5">
                                         <div class="flex flex-wrap gap-2">
                                             <a href="{{ route('catalog-books.edit', $catalogBook) }}" class="rounded-xl bg-blue-50 px-4 py-2 text-sm font-bold text-blue-700 hover:bg-blue-100">Edit</a>
-                                            <form action="{{ route('catalog-books.destroy', $catalogBook) }}" method="POST" onsubmit="return confirm('Hapus catalog book ini?');">
+                                            <form action="{{ route('catalog-books.destroy', $catalogBook) }}" method="POST" onsubmit="return confirm('Hapus katalog ini?');">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="rounded-xl bg-red-50 px-4 py-2 text-sm font-bold text-red-700 hover:bg-red-100">Delete</button>
@@ -54,7 +54,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="4" class="px-6 py-14 text-center text-gray-500">Belum ada catalog book.</td>
+                                    <td colspan="4" class="px-6 py-14 text-center text-gray-500">Belum ada katalog.</td>
                                 </tr>
                             @endforelse
                         </tbody>

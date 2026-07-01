@@ -32,7 +32,8 @@ Route::middleware(['throttle:60,1'])->group(function () {
     Route::get('/about', [PageController::class, 'about'])->name('about');
     Route::get('/toocare', [PageController::class, 'toocare'])->name('toocare');
     Route::get('/products', [PageController::class, 'products'])->name('products');
-    Route::get('/catalog-book', [PageController::class, 'catalogBook'])->name('catalog-book');
+    Route::redirect('/catalog-book', '/katalog', 301);
+    Route::get('/katalog', [PageController::class, 'catalogBook'])->name('catalog-book');
     Route::get('/articles', [PageController::class, 'articles'])->name('articles');
     Route::get('/articles/{article}', [PageController::class, 'articleShow'])->name('articles.show');
 
@@ -469,7 +470,7 @@ Route::middleware(['auth', 'verified', 'throttle:30,1'])
         // Articles
         Route::resource('/articles', ArticleController::class)->except(['show']);
 
-        // Catalog Books
+        // Katalog
         Route::resource('/catalog-books', CatalogBookController::class)
             ->parameters(['catalog-books' => 'catalogBook'])
             ->except(['show']);

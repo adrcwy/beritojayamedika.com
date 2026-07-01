@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
-@section('title', 'Catalog Book Alkes | PT. Berito Jaya Medika')
-@section('meta_description', 'Baca catalog book alat kesehatan PT. Berito Jaya Medika dalam mode PDF reader atau flip book.')
+@section('title', 'Katalog Alkes | PT. Berito Jaya Medika')
+@section('meta_description', 'Baca katalog alat kesehatan PT. Berito Jaya Medika dalam mode PDF reader atau flip book.')
 @section('canonical', route('catalog-book'))
 
 @section('content')
@@ -16,7 +16,7 @@
     <div class="container mx-auto px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <div>
-                <span class="inline-flex rounded-full bg-yellow-400 px-4 py-2 text-xs font-extrabold text-blue-900 shadow-sm">Catalog Book</span>
+                <span class="inline-flex rounded-full bg-yellow-400 px-4 py-2 text-xs font-extrabold text-blue-900 shadow-sm">Katalog</span>
                 <h1 class="mt-5 text-3xl font-extrabold leading-tight text-blue-950 sm:text-5xl">
                     Baca katalog alat kesehatan kami secara online
                 </h1>
@@ -32,7 +32,7 @@
                             <img src="{{ $coverUrl }}" alt="{{ $featuredCatalog->title }}" class="max-h-52 max-w-full rounded-xl object-contain">
                         </div>
                         <div class="p-6">
-                            <p class="text-sm font-bold text-red-600">{{ optional($featuredCatalog->published_at)->format('d M Y') ?? 'Catalog terbaru' }}</p>
+                            <p class="text-sm font-bold text-red-600">{{ optional($featuredCatalog->published_at)->format('d M Y') ?? 'Katalog terbaru' }}</p>
                             <h2 class="mt-2 text-2xl font-extrabold text-blue-950">{{ $featuredCatalog->title }}</h2>
                             @if($featuredCatalog->description)
                                 <p class="mt-3 text-sm leading-relaxed text-gray-600">{{ $featuredCatalog->description }}</p>
@@ -44,8 +44,8 @@
                     </div>
                 @else
                     <div class="p-8 text-center">
-                        <h2 class="text-2xl font-extrabold text-blue-950">Catalog belum tersedia</h2>
-                        <p class="mt-2 text-gray-600">Admin dapat upload PDF melalui menu Catalog Book.</p>
+                        <h2 class="text-2xl font-extrabold text-blue-950">Katalog belum tersedia</h2>
+                        <p class="mt-2 text-gray-600">Admin dapat upload PDF melalui menu Katalog.</p>
                     </div>
                 @endif
             </div>
@@ -77,7 +77,7 @@
                     <div class="flex flex-wrap items-center justify-between gap-3 text-white">
                         <button type="button" data-prev class="rounded-xl bg-white/10 px-4 py-2 text-sm font-bold hover:bg-white/20">Prev</button>
                         <div class="text-center text-sm font-bold">
-                            <span data-page-label>Memuat catalog...</span>
+                            <span data-page-label>Memuat katalog...</span>
                         </div>
                         <button type="button" data-next class="rounded-xl bg-white/10 px-4 py-2 text-sm font-bold hover:bg-white/20">Next</button>
                     </div>
@@ -94,9 +94,9 @@
                 <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     @foreach($catalogBooks->skip(1) as $catalogBook)
                         <a href="{{ \App\Support\MediaPath::url($catalogBook->pdf_path) }}" target="_blank" class="rounded-2xl border border-blue-100 bg-blue-50/50 p-5 hover:bg-blue-50">
-                            <p class="text-xs font-bold text-red-600">{{ optional($catalogBook->published_at)->format('d M Y') ?? 'Catalog' }}</p>
+                            <p class="text-xs font-bold text-red-600">{{ optional($catalogBook->published_at)->format('d M Y') ?? 'Katalog' }}</p>
                             <h3 class="mt-2 font-extrabold text-blue-950">{{ $catalogBook->title }}</h3>
-                            <p class="mt-2 text-sm text-gray-600">Buka PDF catalog</p>
+                            <p class="mt-2 text-sm text-gray-600">Buka PDF katalog</p>
                         </a>
                     @endforeach
                 </div>

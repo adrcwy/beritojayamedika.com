@@ -44,7 +44,7 @@ class CatalogBookController extends Controller
 
         CatalogBook::create($data);
 
-        return redirect()->route('catalog-books.index')->with('success', 'Catalog book berhasil ditambahkan.');
+        return redirect()->route('catalog-books.index')->with('success', 'Katalog berhasil ditambahkan.');
     }
 
     public function edit(CatalogBook $catalogBook)
@@ -77,7 +77,7 @@ class CatalogBookController extends Controller
 
         $catalogBook->update($data);
 
-        return redirect()->route('catalog-books.index')->with('success', 'Catalog book berhasil diperbarui.');
+        return redirect()->route('catalog-books.index')->with('success', 'Katalog berhasil diperbarui.');
     }
 
     public function destroy(CatalogBook $catalogBook)
@@ -86,7 +86,7 @@ class CatalogBookController extends Controller
         $this->deleteMedia($catalogBook->cover_image);
         $catalogBook->delete();
 
-        return redirect()->route('catalog-books.index')->with('success', 'Catalog book berhasil dihapus.');
+        return redirect()->route('catalog-books.index')->with('success', 'Katalog berhasil dihapus.');
     }
 
     private function deleteMedia(?string $path): void
